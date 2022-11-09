@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <div class= "row">
+        <div class= "col p-2 flex-grow-1">
+            <h1>Welcome, {{user_in.first_name}} {{user_in.last_name}} </h1>
+            <p>All posted recipes:</p>
+        </div>
+        <div class="col p-2 text-end">
+            <a href="/crear_receta" class="btn btn-success">+ Create Recipe</a>
+            <a href="/logout" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>under</th>
+                    <th>Posted by</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for receta in todas_recetas_con_usuarios %}
+                <tr>
+                    <td>{{receta.name}}</td>
+                    {% if receta.under == '1' %}
+                    <td>Yes</td>
+                    {% else %}
+                    <td>No</td>
+                    {% endif %}
+                    <td>{{receta.usuario[0].first_name}}</td>
+                    <td>
+                        {% if receta.user_id == session['usuario_id'] %}
+                        <a href="/recipe/edit/{{receta.id}}">Edit</a> |
+                        <a href="/recipe/destroy/{{receta.id}}">Delete</a>|
+                        <a href="/recipe/show/{{receta.id}}">View Recipe</a>
+                        {% else %}
+                        <a href="/recipe/show/{{receta.id}}">View Recipe</a>
+                        {% endif %}
+                    </td>
+                </tr> 
+                {% endfor %}
+    </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

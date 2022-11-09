@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Register</title>
+</head>
+<body>
+    <div class="bg-success p-2" style="--bs-bg-opacity: .5;">
+    
+    <h1 class="text-dark text-center" style="--bs-bg-opacity: .5;">Welcome!</h1>
+    <div class="row bg-success p-2" style="--bs-bg-opacity: .15;"> 
+        <div class="col">
+            <form class="p-3 col-10 mx-auto my-5  shadow-lg p-3 mb-5 bg-body rounded" action="/user_register" method="POST">
+                {% with messages_register = get_flashed_messages(category_filter=['register']) %}
+                    {% if messages_register %}                           
+                        {% for register in messages_register %}          
+                            <p class="text-warning">{{register}}</p> 
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <h2 class="text-center">Register</h2>
+                <div class="form-group p-3 col-10 mx-auto">
+                    <label for="">First name:</label>
+                    <input class="form-control form-control-lg" type="text" placeholder="First Name" aria-label=".form-control-lg example" name="first_name">
+                </div>
+                <div class="form-group p-3 col-10 mx-auto">
+                    <label for="">Last name:</label>
+                    <input class="form-control form-control-lg" type="text" placeholder="Last Name" aria-label=".form-control-lg example" name="last_name">
+                </div>
+                <div class="form-group p-3 col-10 mx-auto">
+                    <label for="">Age:</label>
+                    <input class="form-control form-control-lg" type="number" min="1" max="110" placeholder="Age" aria-label=".form-control-lg example" name="age">
+                </div>
+                <div class="form-group p-3 col-10 mx-auto">
+                    <label for="">Email:</label>
+                    <input class="form-control form-control-lg" type="text" placeholder="Email" aria-label=".form-control-lg example" name="email">
+                </div>
+                <div class="form-group p-3 col-10 mx-auto">
+                    <label for="">Password:</label>
+                    <input class="form-control form-control-lg" type="password" placeholder="Password" aria-label=".form-control-lg example" name="password">
+                </div>
+                <div class="form-group p-3 col-10 mx-auto">
+                    <label for="">Confirm Password:</label>
+                    <input class="form-control form-control-lg" type="password" placeholder="Confirm Password" aria-label=".form-control-lg example" name="confirm">
+                </div>
+                <div class="form-group p-3 col-10 mx-auto" >
+                    <input class="btn btn-primary form-control form-control-lg" type="submit" aria-label=".form-control-lg example" value ="Register"> 
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <form class="p-3 col-10 mx-auto my-5  shadow-lg p-3 mb-5 bg-body rounded" action="/login" method="post">
+                {% with messages_login = get_flashed_messages(category_filter=['login']) %}
+                    {% if messages_login %}                           
+                        {% for login in messages_login %}          
+                            <p class="text-warning">{{login}}</p> 
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <h2 class="text-center">Login</h2>
+                <div class="form-group p-3 col-10 mx-auto">
+                    <label for="">Email</label>
+                    <input class="form-control form-control-lg" type="email" name="email_1">
+                </div>
+                <div class="form-group p-3 col-10 mx-auto">
+                    <label for="">Password</label>
+                    <input class="form-control form-control-lg" type="password" name="password_1">
+                </div>
+                <div class="form-group p-3 col-10 mx-auto" >
+                    <input class="btn btn-primary form-control form-control-lg" type="submit" value="Login"> 
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>
